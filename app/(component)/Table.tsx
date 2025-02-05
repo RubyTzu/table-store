@@ -18,13 +18,13 @@ export function Table() {
   return (
     <>
       <div className="">
-        <div className="pb-10 flex justify-center text-[36px] font-semibold">
+        <div className="pt-10 pb-10 flex justify-center text-[36px] font-semibold md:pt-0">
           <h2 className="">全台店家</h2>
         </div>
         <section className="w-[80vw]">
           <div className="">
             <div className="w-full border-y-2">
-              <div className="w-2/3 flex justify-between">
+              <div className="flex justify-between md:w-2/3">
                 <button
                   className={clsx("grow py-2 border-b-2", {
                     "border-b-black": currentBtn === "north",
@@ -62,13 +62,13 @@ export function Table() {
             <table className="mt-10 w-full">
               <thead>
                 <tr className="border-b-2">
-                  <th className="b-2">
+                  <th className="pb-2 w-1/6">
                     <span className="">地區</span>
                   </th>
-                  <th className="pb-2">
+                  <th className="pb-2 w-1/4">
                     <span className="">店名</span>
                   </th>
-                  <th className="pb-2">
+                  <th className="pb-2 w-1/2">
                     <span className="">地址</span>
                   </th>
                 </tr>
@@ -77,13 +77,13 @@ export function Table() {
                 {currentPlace.map((store: any, idx) => {
                   return (
                     <tr className="" key={idx}>
-                      <td className="" data-title="地區">
+                      <td className="text-center py-4 border-b" data-title="地區">
                         {store.area}
                       </td>
-                      <td className="" data-title="店名">
+                      <td className="text-center py-4 border-b" data-title="店名">
                         {store.name}
                       </td>
-                      <td className="" data-title="地址">
+                      <td className="text-center py-4 border-b text-blue-500" data-title="地址">
                         <Link href={`https://maps.app.goo.gl/${store.googlemap}`} target="_blank">
                           {store.address}
                         </Link>
