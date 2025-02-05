@@ -59,43 +59,86 @@ export function Table() {
                 </button>
               </div>
             </div>
-            <table className="mt-10 w-full">
-              <thead>
-                <tr className="border-b-2">
-                  <th className="pb-2 w-1/6">
-                    <span className="">地區</span>
-                  </th>
-                  <th className="pb-2 w-1/4">
-                    <span className="">店名</span>
-                  </th>
-                  <th className="pb-2 w-1/2">
-                    <span className="">地址</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {currentPlace.map((store: any, idx) => {
-                  return (
-                    <tr className="" key={idx}>
-                      <td className="text-center py-4 border-b" data-title="地區">
-                        {store.area}
-                      </td>
-                      <td className="text-center py-4 border-b" data-title="店名">
-                        {store.name}
-                      </td>
-                      <td className="text-center py-4 border-b text-blue-500" data-title="地址">
-                        <Link href={`https://maps.app.goo.gl/${store.googlemap}`} target="_blank">
-                          {store.address}
-                        </Link>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+            <DesktopTable currentPlace={currentPlace} />
+            <MobileTable currentPlace={currentPlace} />
           </div>
         </section>
       </div>
     </>
   );
+}
+
+function DesktopTable({ currentPlace }: { currentPlace:any }) {
+  return (
+    <table className="mt-10 w-full hidden md:table">
+      <thead>
+        <tr className="border-b-2">
+          <th className="pb-2 w-1/6">
+            <span className="">地區</span>
+          </th>
+          <th className="pb-2 w-1/4">
+            <span className="">店名</span>
+          </th>
+          <th className="pb-2 w-1/2">
+            <span className="">地址</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {currentPlace.map((store: any, idx: any) => {
+          return (
+            <tr className="" key={idx}>
+              <td className="text-center py-4 border-b" data-title="地區">
+                {store.area}
+              </td>
+              <td className="text-center py-4 border-b" data-title="店名">
+                {store.name}
+              </td>
+              <td className="text-center py-4 border-b text-blue-500" data-title="地址">
+                <Link href={`https://maps.app.goo.gl/${store.googlemap}`} target="_blank">
+                  {store.address}
+                </Link>
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
+}
+
+
+function MobileTable({ currentPlace }: { currentPlace: any }) {
+   return (
+     <table className="w-full">
+       <tbody className="md:hidden">
+         {currentPlace.map((store: any, idx: any) => {
+           return (
+             <div className="w-[95%] mx-auto border-b-2" key={idx}>
+               <tr className="flex justify-between pt-4 pb-1 border-b">
+                 <th className="font-semibold">地區</th>
+                 <td className="" data-title="地區">
+                   {store.area}
+                 </td>
+               </tr>
+               <tr className="flex justify-between py-1 border-b">
+                 <th className="font-semibold">店名</th>
+                 <td className="" data-title="店名">
+                   {store.name}
+                 </td>
+               </tr>
+               <tr className="flex justify-between pt-1 pb-4">
+                 <th className="font-semibold">地址</th>
+                 <td className=" text-blue-500" data-title="地址">
+                   <Link href={`https://maps.app.goo.gl/${store.googlemap}`} target="_blank">
+                     {store.address}
+                   </Link>
+                 </td>
+               </tr>
+             </div>
+           );
+         })}
+       </tbody>
+     </table>
+   );
 }
